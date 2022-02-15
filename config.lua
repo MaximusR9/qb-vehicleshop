@@ -108,7 +108,8 @@ Config.Shops = {
         ['showBlip'] = true,  --- true or false
         ['Categories'] = {
             ['super'] = 'Super',
-            ['sports'] = 'Sports'
+            ['sports'] = 'Sports',
+            ['custom'] = 'Custom Cars'
         },
         ['TestDriveTimeLimit'] = 0.5,
         ['Location'] = vector3(-1255.6, -361.16, 36.91),
