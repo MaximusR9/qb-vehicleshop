@@ -363,6 +363,18 @@ end
 
 -- Events
 
+RegisterNetEvent('qb-vehicleshop:client:transferVehicle', function(buyerId, amount)
+    local ped = PlayerPedId()
+    local vehicle = GetVehiclePedIsIn(ped, false)
+    local plate = QBCore.Functions.GetPlate(vehicle)
+    local tcoords = GetEntityCoords(GetPlayerPed(GetPlayerFromServerId(buyerId)))
+    if #(GetEntityCoords(ped)-tcoords) < 5.0 then
+        TriggerServerEvent('qb-vehicleshop:server:transferVehicle', plate, buyerId, amount)
+    else
+        QBCore.Functions.Notify('The person you are selling to is too far away.')
+    end
+end)
+
 RegisterNetEvent('qb-vehicleshop:client:homeMenu', function()
     exports['qb-menu']:openMenu(vehicleMenu)
 end)
@@ -517,7 +529,7 @@ RegisterNetEvent('qb-vehicleshop:client:openFinance', function(data)
                 type = 'number',
                 isRequired = true,
                 name = 'paymentAmount',
-                text = 'Total Payments - Min '..Config.MaximumPayments
+                text = 'Total Payments - Max '..Config.MaximumPayments
             }
         }
     })
@@ -561,7 +573,7 @@ RegisterNetEvent('qb-vehicleshop:client:openCustomFinance', function(data)
 end)
 
 RegisterNetEvent('qb-vehicleshop:client:swapVehicle', function(data)
-    local shopName = getShopInsideOf()
+    local shopName = data.ClosestShop
     if Config.Shops[shopName]["ShowroomVehicles"][data.ClosestVehicle].chosenVehicle ~= data.toVehicle then
         local closestVehicle, closestDistance = QBCore.Functions.GetClosestVehicle(vector3(Config.Shops[shopName]["ShowroomVehicles"][data.ClosestVehicle].coords.x, Config.Shops[shopName]["ShowroomVehicles"][data.ClosestVehicle].coords.y, Config.Shops[shopName]["ShowroomVehicles"][data.ClosestVehicle].coords.z))
         if closestVehicle == 0 then return end
