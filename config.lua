@@ -31,6 +31,7 @@ Config.Shops = {
         ['blipSprite'] = 326, -- Blip sprite
         ['blipColor'] = 3, -- Blip color
         ['Categories'] = {-- Categories available to browse
+            ['custom'] = 'Custom Cars',
             ['sportsclassics'] = 'Sports Classics',
             ['sedans'] = 'Sedans',
             ['coupes'] = 'Coupes',
@@ -115,8 +116,7 @@ Config.Shops = {
         ['blipColor'] = 3, -- Blip color
         ['Categories'] = {
             ['super'] = 'Super',
-            ['sports'] = 'Sports',
-            ['custom'] = 'Custom Cars'
+            ['sports'] = 'Sports'
         },
         ['TestDriveTimeLimit'] = 0.5,
         ['Location'] = vector3(-1255.6, -361.16, 36.91),
